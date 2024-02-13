@@ -1,0 +1,92 @@
+<!-- HTML for displaying completed habits -->
+
+<div id="completedHabitsTable">
+    <h2>Completed Habits</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="background-color: rgb(97, 239, 97);">Habit Name</th>
+          <th style="background-color: rgb(97, 239, 97);">Days Completed</th>
+          <th style="background-color: rgb(97, 239, 97);">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="completedHabitsBody"></tbody>
+    </table>
+  </div>
+  
+  <script>
+  let userId;
+  document.addEventListener('DOMContentLoaded', () => {
+    // Fetch user data from local storage
+    const user=localStorage.getItem('user');
+    const userData = JSON.parse(user);
+    userId=userData._id;
+    console.log("userData",userData);
+    if (userData && userData.completedHabits) {
+      // Display completed habits in the table
+      displayCompletedHabits(userData.completedHabits);
+    }
+  });
+ 
+  function displayCompletedHabits(completedHabits) {
+    const completedHabitsBody = document.getElementById('completedHabitsBody');
+   // Clear existing content
+    completedHabitsBody.innerHTML = '';
+  // Populate the table with completed habits
+    completedHabits.forEach((habit) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${habit.habitname}</td>
+        <td>${habit.daysCompleted}</td>
+        <td><button class="delete-button"onclick="deletePrevHabit('${habit._id}')">
+          <i class="fas fa-trash-alt"></i></button></td>`;
+      completedHabitsBody.appendChild(row);
+    });
+  }
+
+const deletePrevHabit = async (habitId) => {
+  const result=window.confirm("Do you want to delete permantently ?")
+  if(result){
+ try {
+   const response = await fetch(`http://localhost:3000/api/habits/completedHabit/${habitId}/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json', },});
+     if (response.ok) {
+      const res= await response.json();
+      const userdata=res.data;
+      console.log('Completed habit deleted successfully');
+       localStorage.setItem('user',userdata);
+       displayCompletedHabits(userdata.completedHabits);
+       } else {
+      console.error('Failed to delete completed habit');}
+  } catch (error) {
+    console.error('Error deleting completed habit', error.message);
+    // Handling errors, e.g., show an error message to the user
+  }};
+}
+ </script>
+  <script
+  src="https://kit.fontawesome.com/b3348ae33f.js"
+  crossorigin="anonymous"></script>
+  
+  <style>
+    /* Add your styles for table appearance */
+    #completedHabitsTable {
+      margin: 20px; }
+   table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;  }
+   th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left; }
+   th {
+      background-color: #f2f2f2;
+    }
+   h2 {
+      color: #333;
+    }
+  </style>
+  

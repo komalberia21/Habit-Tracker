@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trend Blogger</title>
+    <!-- Box-icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="images/jan.jpeg" class="logo">
+                <span><img src="images/jan.jpeg" alt="User Avatar"></span>
+            </a>
+            <div class="navbar-links">
+                <a href="#" onclick="openCreateModal()">
+                    <i class="fas fa-plus"></i> Create Habits
+                  </a>
+              <button type="button" onclick="completedHabits()">Completed Habits</button>
+              </div>
+            <div class="user-menu">
+               <a href="#" class="user-avatar" onclick="toggleDropdown()">
+                 <img src="images/img7.jpg" alt="User Avatar">
+              </a>
+              komal
+              <div class="dropdown" id="userDropdown">
+                <button type="button" onclick="logout()">Logout</button>
+              </div>
+            </div>
+          </nav>
+        <hr>
+        <div id="alert"></div>  
+    </header>
+   
+    
+    <div class="habit" id="habitsContainer"></div>
+    <div class="allhabits" id="allhabits"></div>
+    
+  <!-- Edit Habit Modal -->
+<div class="modal fade" id="editHabitModal" tabindex="-1" role="dialog" aria-labelledby="editHabitModalLabel" aria-hidden="true">
+  <div id="errorMessage" style="color: red;"></div>
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editHabitModalLabel">Edit Habit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="display:flex;flex-direction: column;">
+        <!-- Add your form fields here, e.g., input fields for name and description -->
+        <input type="text"  id="editHabitName" placeholder="New Habit Name">
+        <textarea style="margin-top:5px;" id="editHabitDescription" placeholder="New Habit Description"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="saveEditedHabit" class="btn btn-primary" onclick="saveEditedHabit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- create Habit Modal -->
+<div class="modal fade" id="createHabitModal" tabindex="-1" role="dialog" aria-labelledby="CreateHabitModalLabel" aria-hidden="true">
+  <div id="errorMessage" style="color: red;"></div>
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createHabitModalLabel">Create Habit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="display:flex;flex-direction: column;">
+        <!-- Add your form fields here, e.g., input fields for name and description -->
+        <input type="text"  id="createHabitName" placeholder="New Habit Name">
+        <textarea style="margin-top:5px;" id="createHabitDescription" placeholder="New Habit Description"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="createdHabit" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+   <script src="habit.js"></script>
+   <script src="extra.js"></script>
+   <script
+   src="https://kit.fontawesome.com/b3348ae33f.js"
+   crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+     integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>
