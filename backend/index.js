@@ -20,6 +20,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/habits", habitrouter);
+app.get("/",(req,res)=>{
+  res.json("welcome to habit tracker");
+})
 
 
 
