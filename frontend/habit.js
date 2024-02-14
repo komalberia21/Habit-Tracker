@@ -1,3 +1,7 @@
+const apiUrl ='http://localhost:3000';
+const frontendurl='http://127.0.0.1:5500';
+
+
 const userString = localStorage.getItem("user");
 let user;
 if (userString) {
@@ -5,9 +9,10 @@ if (userString) {
   console.log(user);
   // Now 'user' is a JavaScript object containing the parsed user information
 } else { console.log("User information not found in local storage");
-  //const newurl = "http://127.0.0.1:5500/frontend/login.html";
-  //window.location.href = newurl;
+  const newurl = `${frontendurl}/frontend/login.html`;
+  window.location.href = newurl;
 }
+
 const displayAlert = (message, alertType) => {
   const alertContainer = document.getElementById('alert');
   alertContainer.innerHTML = '';
@@ -35,7 +40,7 @@ let userId=user._id;
   async function getallhabits() {
  const habitsContainer = document.getElementById('habitsContainer');
   try {
-    const response = await fetch(`http://localhost:3000/api/habits/getallhabitsofuser/${userId}`, {
+    const response = await fetch(`${apiUrl}/api/habits/getallhabitsofuser/${userId}`, {
       credentials: 'include',
     }); // Adjust the endpoint based on your backend route
     const habitsData = await response.json();
@@ -116,7 +121,7 @@ const habitId = button.getAttribute('data-id');
      button.setAttribute('data-value', completed ? 'false' : 'true');
   //  logic to update the 'completed' status in the database goes here
   try {
-    const response = await fetch(`http://localhost:3000/api/habits/togglecompleted/${habitId}/${dayId}`);
+    const response = await fetch(`${apiUrl}/api/habits/togglecompleted/${habitId}/${dayId}`);
     const res = await response.json();
     console.log(res);
     if (res) {console.log("toogle success"); }
@@ -130,7 +135,7 @@ async function deleteHabit(habitid) {
   const habitId = String(habitid);
   console.log(habitId);
   try {
-    const response = await fetch(`http://localhost:3000/api/habits/delete/${habitId}/${userId}`, {
+    const response = await fetch(`${apiUrl}/api/habits/delete/${habitId}/${userId}`, {
       method: 'DELETE',
       headers: {'Content-Type': 'application/json',},
       credentials: 'include',
@@ -168,7 +173,7 @@ async function editHabit(habitId, newName, newDescription) {
     errorMessageElement.innerText = 'Fields cannot be empty';
     alert("Fields cannot be empty");}
   try {
-    const response = await fetch(`http://localhost:3000/api/habits/edit/${habitId}`, {
+    const response = await fetch(`${apiUrl}/api/habits/edit/${habitId}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json',},
       body: JSON.stringify({
@@ -209,7 +214,7 @@ async function CreHabit(Name, Description) {
     errorMessageElement.innerText = 'Fields cannot be empty';
     alert("Fields cannot be empty");}
   try {
-    const response = await fetch(`http://127.0.0.1:3000/api/habits/add/${userId}`, {
+    const response = await fetch(`${apiUrl}/api/habits/add/${userId}`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json',},
       body: JSON.stringify({
@@ -234,7 +239,7 @@ async function endHabit(habitId) {
   console.log("userId", userId);
   const id = habitId;
   try {
-    const response = await fetch(`http://localhost:3000/api/habits/end/${id}/${userId}`, {
+    const response = await fetch(`${apiUrl}/api/habits/end/${id}/${userId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json',}});
     if (!response.ok) {throw new Error('Failed to end habit');}
@@ -253,7 +258,7 @@ async function continueHabit(habitId) {
   console.log("inside continue hbait");
   const id = habitId;
   try {
-    const response = await fetch(`http://localhost:3000/api/habits/continue/${id}`, {
+    const response = await fetch(`${apiUrl}/api/habits/continue/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', }
     });
@@ -270,7 +275,7 @@ async function continueHabit(habitId) {
 //redirected to new page conatining previous habits
 function completedHabits() {
   console.log("inside compltedhabits");
-  const newurl = "http://127.0.0.1:5500/frontend/completedhabits.html";
+  const newurl = `${frontendurl}/frontend/completedhabits.html`;
   window.location.href = newurl;
 }
 
@@ -279,6 +284,6 @@ function logout() {
   localStorage.removeItem('user');
   console.log('Logout');
   // Redirect or perform any other actions as needed after logout
-  const newurl = "http://localhost:5500/frontend/login.html";
+  const newurl = `${frontendurl}/frontend/login.html`;
   window.location.href = newurl;
 }

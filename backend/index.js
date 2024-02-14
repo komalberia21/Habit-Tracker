@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 import userRouter from "./src/features/user/user.routes.js";
 import cookieParser from "cookie-parser";
@@ -16,7 +15,7 @@ const corsOptions = {
     credentials: true,
   };
   
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/user", userRouter);

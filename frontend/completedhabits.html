@@ -15,7 +15,10 @@
   </div>
   
   <script>
+    
   let userId;
+  const apiUrl ='http://localhost:3000';
+
   document.addEventListener('DOMContentLoaded', () => {
     // Fetch user data from local storage
     const user=localStorage.getItem('user');
@@ -48,7 +51,7 @@ const deletePrevHabit = async (habitId) => {
   const result=window.confirm("Do you want to delete permantently ?")
   if(result){
  try {
-   const response = await fetch(`http://localhost:3000/api/habits/completedHabit/${habitId}/${userId}`, {
+   const response = await fetch(`${apiUrl}/api/habits/completedHabit/${habitId}/${userId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json', },});
