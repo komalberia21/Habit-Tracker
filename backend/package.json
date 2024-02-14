@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start":"node server.js"
+    "test": "jest"
+    
   },
   "keywords": [],
   "author": "",

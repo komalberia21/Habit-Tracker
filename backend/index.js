@@ -5,6 +5,9 @@ import cookieParser from "cookie-parser";
 import { appLevelErrorHandlerMiddleware } from "./src/middlewares/errorHandler.js";
 import habitrouter from "./src/features/habits/habits.routes.js";
 import cors from "cors";
+import { connectToDb } from "./src/config/db.js";
+
+
 
 
 dotenv.config();
@@ -23,6 +26,10 @@ app.use("/api/habits", habitrouter);
 app.use("/",(req,res)=>{
   res.json("welcome to habit tracker");
 })
+app.listen(process.env.PORT, async () => {
+  await connectToDb();
+  console.log(`server is running at port 3000`);
+});
 
 
 
