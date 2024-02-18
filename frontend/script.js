@@ -1,5 +1,6 @@
 let currentuserId;
 console.log(document.cookie);
+const apiUrl ='https://habittracker-q6ux.onrender.com'
 
 
 
@@ -16,7 +17,7 @@ async function registerUser() {
     mobile:mobile
   };
 try {
-    const response = await fetch("http://localhost:3000/api/user/register", {
+    const response = await fetch(`${apiUrl}/api/user/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -37,27 +38,21 @@ try {
         errorResponse.errors.forEach(error => {
           const errordom=document.getElementById("error")
           errordom.innerHTML+=`<div class="alert alert-danger" role="alert">
-          ${error.msg}
-        </div>
-        `
+          ${error.msg}</div>`
         console.error(`Validation Error - ${error.msg}`);
         });
-      }
-    }
+      } }
   } catch (error) {
     const errordisplay=document.getElementById("errors");
     if(errordisplay){
       errordisplay.innerHTML=`<div class="alert alert-danger" role="alert">
-      Something went wrong!! Try latter..
-    </div>`
+      Something went wrong!! Try latter..</div>`
     }
     // Set a timeout to clear the error message after 5 seconds
     setTimeout(() => {
      errordisplay.innerHTML = ''; // Clear the content
      }, 5000); // 5000 milliseconds (5 seconds)
-    console.error('Error registering user:', error);
-  }
-}
+    console.error('Error registering user:', error);}}
 
 //function to loginuser
 async function loginUser() {
@@ -68,7 +63,7 @@ const loginData = {
     email: email,
     password: password};
     try {
-    const response = await fetch("http://127.0.0.1:3000/api/user/login", {
+    const response = await fetch(`${apiUrl}/api/user/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

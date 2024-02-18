@@ -1,4 +1,4 @@
-const apiUrl ='http://localhost:3000';
+const apiUrl ='https://habittracker-q6ux.onrender.com'
 const frontendurl='http://127.0.0.1:5500';
 
 
