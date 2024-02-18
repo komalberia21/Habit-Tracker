@@ -28,7 +28,7 @@ try {
     if (response.ok) {
       const data = await response.json();
       console.log('Registration successful:', data);
-      const newurl = `${frontendurl}/frontend/login.html`
+      const newurl = `${frontendurl}/login.html`
       window.location.href=newurl;
     }else {
       const errorResponse = await response.json();
@@ -81,7 +81,7 @@ const loginData = {
       
      
       //on successfull login we are redirected to dashboard page
-      const newurl = `${frontendurl}/frontend/dashboard.html`;
+      const newurl = `${frontendurl}/dashboard.html`;
       window.location.href = newurl;
       
       const uuser=localStorage.getItem("user");

@@ -9,7 +9,7 @@ if (userString) {
   console.log(user);
   // Now 'user' is a JavaScript object containing the parsed user information
 } else { console.log("User information not found in local storage");
-  const newurl = `${frontendurl}/frontend/login.html`;
+  const newurl = `${frontendurl}/login.html`;
   window.location.href = newurl;
 }
 
@@ -284,6 +284,6 @@ function logout() {
   localStorage.removeItem('user');
   console.log('Logout');
   // Redirect or perform any other actions as needed after logout
-  const newurl = `${frontendurl}/frontend/login.html`;
+  const newurl = `${frontendurl}/login.html`;
   window.location.href = newurl;
 }
