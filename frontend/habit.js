@@ -1,5 +1,5 @@
 const apiUrl ='https://habittracker-q6ux.onrender.com'
-const frontendurl='http://127.0.0.1:5500';
+const frontendurl='https://habit-tracker-frontend-olive.vercel.app';
 
 
 const userString = localStorage.getItem("user");

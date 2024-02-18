@@ -1,6 +1,7 @@
 let currentuserId;
 console.log(document.cookie);
 const apiUrl ='https://habittracker-q6ux.onrender.com'
+const frontendurl='https://habit-tracker-frontend-olive.vercel.app'
 
 
 
@@ -27,7 +28,7 @@ try {
     if (response.ok) {
       const data = await response.json();
       console.log('Registration successful:', data);
-      const newurl = "http://127.0.0.1:5500/frontend/login.html"
+      const newurl = `${frontendurl}/frontend/login.html`
       window.location.href=newurl;
     }else {
       const errorResponse = await response.json();
@@ -80,7 +81,7 @@ const loginData = {
       
      
       //on successfull login we are redirected to dashboard page
-      const newurl = "http://127.0.0.1:5500/frontend/dashboard.html";
+      const newurl = `${frontendurl}/frontend/dashboard.html`;
       window.location.href = newurl;
       
       const uuser=localStorage.getItem("user");
