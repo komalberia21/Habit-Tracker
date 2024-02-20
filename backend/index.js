@@ -10,11 +10,11 @@ dotenv.config();
 
 const app = express();
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500', 
+    origin: 'https://habit-tracker-frontend-olive.vercel.app', 
     credentials: true,
   };
   
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/user", userRouter);
