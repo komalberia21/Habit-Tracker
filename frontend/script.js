@@ -10,13 +10,13 @@ async function registerUser() {
   const username = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  const mobile=document.getElementById("mobile").value;
+ 
    const userData = {
     name: username,
     email: email,
-    password: password,
-    mobile:mobile
-  };
+    password: password
+   };
+
 try {
     const response = await fetch(`${apiUrl}/api/user/register`, {
       method: 'POST',
@@ -131,7 +131,7 @@ function logout(){
   console.log("inside logout");
   currentuserId=null;
   localStorage.setItem("userId",null);
-  const newurl="http://127.0.0.1:5500/frontend/index1.html";
+  const newurl="http://127.0.0.1:5500/index.html";
   window.location.href=newurl;
 }
 
